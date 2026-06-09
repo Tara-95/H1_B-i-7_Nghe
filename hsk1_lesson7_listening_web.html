@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSK1 · Bài 7 · Kỹ Năng Nghe</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ── TOKENS ── */
+:root {
+  --ink:      #0f1923;
+  --ink-soft: #4a5568;
+  --ink-muted:#8a9ab0;
+  --bg:       #f0f4f8;
+  --surface:  #ffffff;
+  --border:   #dde3ec;
+
+  --navy:     #1b2f5e;
+  --navy-mid: #2a4080;
+  --navy-glow:rgba(27,47,94,0.12);
+
+  --red:      #c8232e;
+  --red-soft: #fbeaea;
+  --gold:     #d4870a;
+  --gold-soft:#fef3dc;
+
+  --ok:       #15803d;
+  --ok-soft:  #dcfce7;
+  --bad:      #b91c1c;
+  --bad-soft: #fee2e2;
+
+  --radius:   16px;
+  --r-sm:     10px;
+  --shadow:   0 2px 16px rgba(15,25,35,0.08);
+  --shadow-lg:0 8px 40px rgba(15,25,35,0.14);
+}
+
+/* ── RESET ── */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+button{font-family:'Inter',sans-serif;cursor:pointer}
+
+/* ══════════════════════════════════════════
+   HERO HEADER
+══════════════════════════════════════════ */
+.hero{
+  background:linear-gradient(150deg,var(--navy) 0%,var(--navy-mid) 55%,#1e3a6e 100%);
+  padding:48px 20px 70px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-bg-char{
+  position:absolute;font-family:'Noto Sans SC',sans-serif;
+  font-size:240px;font-weight:700;
+  color:rgba(255,255,255,0.04);
+  right:-10px;top:-30px;pointer-events:none;line-height:1;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);
+  border-radius:99px;padding:5px 14px;
+  font-size:11px;font-weight:600;letter-spacing:2px;
+  color:rgba(255,255,255,0.85);text-transform:uppercase;
+  margin-bottom:18px;
+}
+.hero h1{
+  font-family:'Noto Sans SC',sans-serif;
+  font-size:clamp(28px,6vw,48px);font-weight:700;
+  color:#fff;line-height:1.15;margin-bottom:8px;
+}
+.hero-py{font-size:14px;color:rgba(255,255,255,0.55);letter-spacing:1px;margin-bottom:6px}
+.hero-vi{font-size:15px;color:rgba(255,255,255,0.75);margin-bottom:28px}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-n{font-size:26px;font-weight:700;color:#fff}
+.hero-stat-l{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;letter-spacing:1px;text-transform:uppercase}
+
+/* ══════════════════════════════════════════
+   REGISTER CARD (floating over hero)
+══════════════════════════════════════════ */
+.reg-float{
+  max-width:540px;margin:-34px auto 0;
+  padding:0 16px 28px;position:relative;z-index:20;
+}
+.reg-card{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow-lg);
+  padding:24px;border:1px solid var(--border);
+}
+.reg-card h3{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:16px}
+.reg-row{display:flex;gap:10px;flex-wrap:wrap}
+.reg-card input,.reg-card select{
+  flex:1;min-width:150px;
+  padding:11px 14px;border-radius:var(--r-sm);
+  border:1.5px solid var(--border);
+  font-size:14px;color:var(--ink);transition:border-color .2s;
+}
+.reg-card input:focus,.reg-card select:focus{outline:none;border-color:var(--navy)}
+.btn-start{
+  width:100%;margin-top:12px;padding:13px;
+  background:var(--navy);color:#fff;border:none;border-radius:var(--r-sm);
+  font-size:15px;font-weight:700;letter-spacing:.3px;
+  transition:background .2s,transform .1s;
+}
+.btn-start:hover{background:var(--navy-mid)}
+.btn-start:active{transform:scale(.98)}
+
+/* ══════════════════════════════════════════
+   MAIN SHELL
+══════════════════════════════════════════ */
+.main{max-width:800px;margin:0 auto;padding:24px 16px 80px;display:none}
+
+/* Info bar */
+.info-bar{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:12px 18px;margin-bottom:20px;
+  font-size:13px;color:var(--ink-soft);
+  display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;
+}
+.info-bar strong{color:var(--navy)}
+
+/* Progress */
+.prog-row{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-soft);margin-bottom:6px}
+.prog-track{height:5px;background:var(--border);border-radius:99px;margin-bottom:24px}
+.prog-fill{height:5px;border-radius:99px;background:linear-gradient(90deg,var(--navy),var(--red));transition:width .6s ease}
+
+/* ══════════════════════════════════════════
+   LESSON NAV DOTS
+══════════════════════════════════════════ */
+.lesson-dots{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;align-items:center}
+.ld-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--ink-muted);margin-right:4px}
+.dot{
+  width:36px;height:36px;border-radius:10px;
+  border:1.5px solid var(--border);background:var(--surface);
+  font-size:12px;font-weight:700;color:var(--ink-soft);
+  transition:all .2s;
+}
+.dot:hover{border-color:var(--navy);color:var(--navy)}
+.dot.active{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 2px 10px var(--navy-glow)}
+.dot.done{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.dot.partial{background:var(--gold-soft);border-color:var(--gold);color:var(--gold)}
+.dot.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+
+/* ══════════════════════════════════════════
+   LESSON CARD
+══════════════════════════════════════════ */
+.lesson-card{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow);border:1px solid var(--border);
+  overflow:hidden;margin-bottom:24px;
+}
+
+/* Card header band */
+.lcard-band{
+  background:linear-gradient(120deg,var(--navy) 0%,var(--navy-mid) 100%);
+  padding:16px 22px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.lcard-num{
+  background:var(--red);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  padding:3px 11px;border-radius:99px;flex-shrink:0;
+}
+.lcard-title{color:#fff;font-size:15px;font-weight:700}
+.lcard-scene{color:rgba(255,255,255,0.55);font-size:12px;margin-left:auto}
+
+.lcard-body{padding:22px}
+
+/* ══════════════════════════════════════════
+   VOCAB CHIPS
+══════════════════════════════════════════ */
+.vocab-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.vocab-chip{
+  display:flex;flex-direction:column;
+  background:var(--red-soft);border:1.5px solid #f0c0c2;
+  border-radius:var(--r-sm);padding:7px 12px;
+}
+.vc-zh{font-family:'Noto Sans SC',sans-serif;font-size:16px;font-weight:700;color:var(--red)}
+.vc-py{font-size:11px;color:var(--ink-muted);margin-top:1px}
+.vc-vi{font-size:11px;color:var(--ink-soft);margin-top:1px}
+
+/* ══════════════════════════════════════════
+   AUDIO PLAYER
+══════════════════════════════════════════ */
+.player{
+  background:linear-gradient(140deg,#0f1923 0%,#1b2f5e 100%);
+  border-radius:14px;padding:22px;margin-bottom:20px;
+}
+.player-title{
+  font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,0.45);text-align:center;margin-bottom:14px;
+}
+
+/* Waveform */
+.waveform{
+  display:flex;align-items:center;justify-content:center;
+  gap:3px;height:40px;margin-bottom:16px;
+}
+.wv-bar{
+  width:4px;border-radius:2px;
+  background:rgba(255,255,255,0.18);
+  transition:height .08s;
+}
+.wv-bar.live{background:var(--gold);animation:wv-pulse var(--d,.5s) ease-in-out infinite alternate}
+@keyframes wv-pulse{from{height:5px}to{height:var(--h,28px)}}
+
+/* Controls row */
+.player-controls{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+
+.btn-play{
+  width:56px;height:56px;border-radius:50%;border:none;
+  background:var(--red);color:#fff;font-size:22px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:0 4px 18px rgba(200,35,46,0.4);
+  transition:transform .15s,background .2s;
+}
+.btn-play:hover{background:#a81c26;transform:scale(1.06)}
+.btn-play.playing{background:var(--gold);box-shadow:0 4px 18px rgba(212,135,10,0.4)}
+.btn-play:disabled{background:#555;box-shadow:none;cursor:default;transform:none}
+
+.spd-group{display:flex;gap:6px}
+.btn-spd{
+  padding:6px 13px;border-radius:99px;border:1.5px solid rgba(255,255,255,0.2);
+  background:transparent;color:rgba(255,255,255,0.7);
+  font-size:12px;font-weight:700;transition:all .15s;
+}
+.btn-spd.on{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.5);color:#fff}
+
+.listen-count{color:rgba(255,255,255,0.45);font-size:12px;text-align:center;margin-top:10px}
+
+/* Active line highlight */
+.player-line-preview{
+  text-align:center;color:rgba(255,255,255,0.35);
+  font-family:'Noto Sans SC',sans-serif;font-size:14px;
+  min-height:22px;margin-bottom:8px;transition:color .3s;
+}
+.player-line-preview.lit{color:rgba(255,255,255,0.9)}
+
+/* ══════════════════════════════════════════
+   DIALOGUE DISPLAY
+══════════════════════════════════════════ */
+.dialogue{margin-bottom:20px}
+.dialogue-toggle{
+  display:flex;align-items:center;gap:8px;
+  background:var(--gold-soft);border:1.5px solid #f5d08a;
+  border-radius:var(--r-sm);padding:10px 15px;
+  font-size:13px;font-weight:600;color:#7a4800;
+  width:100%;text-align:left;transition:background .15s;margin-bottom:10px;
+}
+.dialogue-toggle:hover{background:#fde9b0}
+.dialogue-toggle .arr{margin-left:auto;transition:transform .25s}
+.dialogue-toggle.open .arr{transform:rotate(180deg)}
+
+.dialogue-lines{display:none}
+.dialogue-lines.open{display:flex;flex-direction:column;gap:0}
+
+.dline{
+  display:grid;grid-template-columns:auto 1fr;gap:0 12px;
+  padding:13px 14px;border-bottom:1px solid var(--border);
+  transition:background .3s;border-radius:0;
+}
+.dline:last-child{border-bottom:none}
+.dline.highlight{background:linear-gradient(90deg,#eff6ff,var(--surface))}
+.dline:first-child{border-radius:var(--r-sm) var(--r-sm) 0 0}
+.dline:last-child{border-radius:0 0 var(--r-sm) var(--r-sm)}
+
+.spk-tag{
+  font-size:10px;font-weight:700;color:#fff;
+  padding:2px 8px;border-radius:99px;height:fit-content;
+  margin-top:3px;white-space:nowrap;
+}
+.spk-A{background:var(--navy)}
+.spk-B{background:var(--red)}
+
+.dline-content{}
+.dline-zh{font-family:'Noto Sans SC',sans-serif;font-size:17px;font-weight:500;line-height:1.6}
+.dline-py{font-size:12px;color:var(--ink-muted);margin-top:2px}
+.dline-vi{font-size:12px;color:var(--gold);font-style:italic;margin-top:1px}
+
+/* ══════════════════════════════════════════
+   COMPREHENSION QUESTIONS
+══════════════════════════════════════════ */
+.qs-header{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:14px;
+}
+.qs-label{
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--red);
+}
+.qs-lock-notice{
+  background:var(--navy);color:rgba(255,255,255,0.8);
+  border-radius:var(--r-sm);padding:10px 15px;
+  font-size:13px;text-align:center;margin-bottom:14px;
+}
+
+.q-block{
+  border:1.5px solid var(--border);border-radius:var(--r-sm);
+  padding:16px;margin-bottom:12px;
+  transition:border-color .2s;
+}
+.q-block.locked{opacity:.45;pointer-events:none}
+.q-block.state-ok{border-color:var(--ok);background:var(--ok-soft)}
+.q-block.state-bad{border-color:var(--bad);background:var(--bad-soft)}
+
+.q-num-text{
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:var(--ink-muted);margin-bottom:8px;
+}
+.q-stem{
+  font-family:'Noto Sans SC','Inter',sans-serif;
+  font-size:16px;font-weight:500;line-height:1.6;margin-bottom:12px;
+}
+.q-choices{display:flex;flex-direction:column;gap:8px}
+.q-opt{
+  padding:10px 15px;border-radius:8px;
+  border:1.5px solid var(--border);background:var(--surface);
+  text-align:left;font-size:14px;
+  font-family:'Noto Sans SC','Inter',sans-serif;
+  color:var(--ink);transition:all .15s;
+}
+.q-opt:hover:not(:disabled){border-color:var(--navy);background:#eef2fb}
+.q-opt.opt-ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:700}
+.q-opt.opt-bad{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.q-opt:disabled{cursor:default}
+
+.q-feedback{
+  margin-top:10px;padding:8px 12px;border-radius:8px;
+  font-size:13px;font-weight:600;display:none;
+}
+.q-feedback.fb-ok{display:flex;align-items:center;gap:6px;background:var(--ok-soft);color:var(--ok)}
+.q-feedback.fb-bad{display:flex;align-items:center;gap:6px;background:var(--bad-soft);color:var(--bad)}
+
+/* AI explain button */
+.btn-explain{
+  margin-top:10px;padding:7px 14px;
+  background:var(--gold-soft);border:1.5px solid #f5d08a;
+  border-radius:8px;color:#7a4800;font-size:12px;font-weight:600;
+  transition:background .15s;display:none;
+}
+.btn-explain.show{display:inline-flex;align-items:center;gap:6px}
+.btn-explain:hover{background:#fde9b0}
+
+.ai-explain-box{
+  margin-top:10px;padding:12px 14px;
+  background:#fffdf5;border:1.5px solid #f5d08a;
+  border-radius:10px;font-size:13px;line-height:1.7;
+  color:var(--ink-soft);display:none;white-space:pre-wrap;
+}
+.ai-explain-box.show{display:block}
+.ai-thinking{color:var(--gold);font-style:italic}
+
+/* ══════════════════════════════════════════
+   RESULT CARD
+══════════════════════════════════════════ */
+.result{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow-lg);border:1px solid var(--border);
+  padding:40px 24px;text-align:center;display:none;
+}
+.result.show{display:block}
+.result-emoji{font-size:60px;margin-bottom:10px}
+.result-heading{
+  font-family:'Noto Sans SC',sans-serif;
+  font-size:20px;font-weight:700;color:var(--ink);margin-bottom:16px;
+}
+.result-score{
+  font-size:88px;font-weight:700;color:var(--navy);
+  line-height:1;margin:0 0 4px;letter-spacing:-2px;
+}
+.result-sub{font-size:15px;color:var(--ink-soft);margin-bottom:24px}
+.result-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
+  gap:10px;margin:0 0 24px;
+}
+.rg-cell{background:var(--bg);border-radius:10px;padding:14px 8px;border:1px solid var(--border)}
+.rg-n{font-size:24px;font-weight:700;color:var(--navy)}
+.rg-l{font-size:10px;color:var(--ink-muted);margin-top:3px;letter-spacing:.5px}
+.result-note{font-size:12px;color:var(--ink-muted);margin-bottom:20px}
+.btn-retry{
+  padding:13px 36px;background:var(--navy);color:#fff;
+  border:none;border-radius:var(--r-sm);font-size:15px;font-weight:700;
+  transition:background .2s;
+}
+.btn-retry:hover{background:var(--navy-mid)}
+
+/* ══════════════════════════════════════════
+   SUBMIT PANEL
+══════════════════════════════════════════ */
+.submit-panel{
+  margin-top:28px;
+  border-top:1.5px solid var(--border);
+  padding-top:24px;
+}
+.submit-panel h3{
+  font-size:15px;font-weight:700;color:var(--ink);
+  margin-bottom:6px;
+}
+.submit-panel p{
+  font-size:13px;color:var(--ink-soft);margin-bottom:18px;line-height:1.6;
+}
+.submit-summary{
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:14px 18px;margin-bottom:18px;
+  display:flex;flex-direction:column;gap:6px;text-align:left;
+}
+.ss-row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0}
+.ss-row span:first-child{color:var(--ink-soft)}
+.ss-row span:last-child{font-weight:700;color:var(--ink)}
+.ss-score{color:var(--navy)!important;font-size:15px!important}
+
+.btn-submit{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--red) 0%,#a81c26 100%);
+  color:#fff;border:none;border-radius:var(--r-sm);
+  font-size:16px;font-weight:700;letter-spacing:.3px;
+  transition:opacity .2s,transform .1s;
+  box-shadow:0 4px 18px rgba(200,35,46,0.35);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-submit:hover{opacity:.9}
+.btn-submit:active{transform:scale(.98)}
+.btn-submit:disabled{background:#bbb;box-shadow:none;cursor:default;opacity:1}
+
+.submitted-card{
+  margin-top:20px;
+  background:linear-gradient(135deg,var(--ok-soft),#f0fdf4);
+  border:2px solid var(--ok);border-radius:var(--radius);
+  padding:30px 24px;text-align:center;display:none;
+}
+.submitted-card.show{display:block}
+.submitted-big{font-size:52px;margin-bottom:10px}
+.submitted-title{font-size:18px;font-weight:700;color:var(--ok);margin-bottom:8px}
+.submitted-sub{font-size:13px;color:var(--ink-soft);line-height:1.7;margin-bottom:16px}
+.submitted-receipt{
+  background:#fff;border:1px solid #b7ebc0;border-radius:var(--r-sm);
+  padding:14px 18px;text-align:left;margin-bottom:8px;
+}
+.sr-row{
+  display:flex;justify-content:space-between;
+  font-size:13px;padding:5px 0;
+  border-bottom:1px solid #e8f5e9;
+}
+.sr-row:last-child{border-bottom:none}
+.sr-row span:first-child{color:var(--ink-soft)}
+.sr-row span:last-child{font-weight:700;color:var(--ink)}
+.sr-highlight{color:var(--ok)!important;font-size:15px!important}
+.submitted-time{font-size:11px;color:var(--ink-muted);margin-top:10px}
+
+/* ══════════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════════ */
+@media(max-width:500px){
+  .reg-row{flex-direction:column}
+  .player-controls{flex-direction:column}
+  .hero-stats{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-bg-char">听</div>
+  <div class="hero-badge">🎧 Kỹ Năng Nghe · HSK 1 · Bài 7</div>
+  <h1>我晚上六点半下班</h1>
+  <div class="hero-py">Wǒ wǎnshang liù diǎn bàn xiàbān</div>
+  <div class="hero-vi">Tôi tan làm lúc 6 giờ rưỡi tối</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-n">10</div><div class="hero-stat-l">Bài nghe</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">30</div><div class="hero-stat-l">Câu hỏi</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">AI</div><div class="hero-stat-l">Giải thích</div></div>
+  </div>
+</div>
+
+<!-- ══ REGISTER ══ -->
+<div class="reg-float" id="regSection">
+  <div class="reg-card">
+    <h3>📋 Nhập thông tin trước khi làm bài</h3>
+    <div class="reg-row">
+      <input type="text" id="sName" placeholder="Họ và tên" autocomplete="name" />
+      <input type="text" id="sClass" placeholder="Tên lớp (tự điền)" autocomplete="off" />
+    </div>
+    <button class="btn-start" onclick="boot()">🎧 Bắt đầu luyện nghe →</button>
+  </div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<div class="main" id="mainEl">
+  <div class="info-bar" id="infoBar"></div>
+  <div class="prog-row">
+    <span id="progLabel">Hoàn thành: 0 / 10 bài</span>
+    <span id="scoreLabel">Điểm: 0 / 30</span>
+  </div>
+  <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="lesson-dots" id="dotsRow"></div>
+  <div id="cardArea"></div>
+  <div class="result" id="resultEl"></div>
+  <div class="submitted-card" id="submittedCard"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════════ */
+const LESSONS = [
+  {
+    id:1, title:'Hỏi giờ hiện tại', scene:'📞 Hai bạn học nói chuyện',
+    vocab:[
+      {zh:'现在',py:'xiànzài',vi:'bây giờ'},
+      {zh:'几点',py:'jǐ diǎn',vi:'mấy giờ'},
+      {zh:'上午',py:'shàngwǔ',vi:'buổi sáng (9–12h)'},
+    ],
+    dialog:[
+      {spk:'A',name:'白家月',zh:'现在几点？',py:'Xiànzài jǐ diǎn?',vi:'Bây giờ mấy giờ?'},
+      {spk:'B',name:'安妮',zh:'现在上午九点十分。',py:'Xiànzài shàngwǔ jiǔ diǎn shí fēn.',vi:'Bây giờ 9 giờ 10 phút sáng.'},
+      {spk:'A',name:'白家月',zh:'我们十点有课，是吗？',py:'Wǒmen shí diǎn yǒu kè, shì ma?',vi:'Chúng ta 10 giờ có lớp đúng không?'},
+      {spk:'B',name:'安妮',zh:'对，上午十点上课，十二点下课。',py:'Duì, shàngwǔ shí diǎn shàngkè, shí\'èr diǎn xiàkè.',vi:'Đúng, sáng 10 giờ lên lớp, 12 giờ tan học.'},
+    ],
+    questions:[
+      {q:'现在几点？',choices:['上午八点','上午九点十分','上午十点','中午十二点'],ans:1},
+      {q:'他们几点上课？',choices:['九点','九点十分','十点','十二点'],ans:2},
+      {q:'他们几点下课？',choices:['十点','十一点','十一点半','十二点'],ans:3},
+    ]
+  },
+  {
+    id:2, title:'Hẹn gặp buổi chiều', scene:'🏫 Sân trường',
+    vocab:[
+      {zh:'下午',py:'xiàwǔ',vi:'buổi chiều'},
+      {zh:'见',py:'jiàn',vi:'gặp nhau'},
+      {zh:'吧',py:'ba',vi:'trợ từ đề nghị'},
+    ],
+    dialog:[
+      {spk:'A',name:'李文',zh:'你下午有空吗？',py:'Nǐ xiàwǔ yǒu kòng ma?',vi:'Bạn buổi chiều có rảnh không?'},
+      {spk:'B',name:'白家月',zh:'我下午两点有课，四点下课。',py:'Wǒ xiàwǔ liǎng diǎn yǒu kè, sì diǎn xiàkè.',vi:'Tôi chiều 2 giờ có lớp, 4 giờ tan học.'},
+      {spk:'A',name:'李文',zh:'那我们四点半见吧。',py:'Nà wǒmen sì diǎn bàn jiàn ba.',vi:'Vậy chúng ta 4 giờ rưỡi gặp nhau nhé.'},
+      {spk:'B',name:'白家月',zh:'好的，四点半见！',py:'Hǎo de, sì diǎn bàn jiàn!',vi:'Được, 4 giờ rưỡi gặp!'},
+    ],
+    questions:[
+      {q:'白家月下午几点有课？',choices:['一点','两点','三点','四点'],ans:1},
+      {q:'白家月几点下课？',choices:['三点','三点半','四点','四点半'],ans:2},
+      {q:'他们约几点见面？',choices:['四点','四点半','五点','五点半'],ans:1},
+    ]
+  },
+  {
+    id:3, title:'Gọi điện hỏi tan làm', scene:'📱 Gọi điện thoại',
+    vocab:[
+      {zh:'晚上',py:'wǎnshang',vi:'buổi tối'},
+      {zh:'下班',py:'xiàbān',vi:'tan ca'},
+      {zh:'见',py:'jiàn',vi:'gặp nhau'},
+    ],
+    dialog:[
+      {spk:'A',name:'王一雪',zh:'喂，你几点下班？',py:'Wèi, nǐ jǐ diǎn xiàbān?',vi:'A lô, bạn mấy giờ tan ca?'},
+      {spk:'B',name:'刘明',zh:'我晚上六点半下班。',py:'Wǒ wǎnshang liù diǎn bàn xiàbān.',vi:'Tôi tối 6 giờ rưỡi tan ca.'},
+      {spk:'A',name:'王一雪',zh:'好，我们七点见吧。',py:'Hǎo, wǒmen qī diǎn jiàn ba.',vi:'Được, chúng ta 7 giờ gặp nhau nhé.'},
+      {spk:'B',name:'刘明',zh:'好的，七点见。',py:'Hǎo de, qī diǎn jiàn.',vi:'Được, 7 giờ gặp.'},
+    ],
+    questions:[
+      {q:'刘明几点下班？',choices:['晚上六点','晚上六点半','晚上七点','晚上七点半'],ans:1},
+      {q:'他们约几点见面？',choices:['六点','六点半','七点','八点'],ans:2},
+      {q:'"吧"在"我们七点见吧"中表示什么？',choices:['疑问','建议/商量','感叹','确认事实'],ans:1},
+    ]
+  },
+  {
+    id:4, title:'Hỏi thăm đang ở đâu', scene:'🏠 Gọi điện từ văn phòng',
+    vocab:[
+      {zh:'在',py:'zài',vi:'ở tại'},
+      {zh:'哪儿',py:'nǎr',vi:'ở đâu'},
+      {zh:'家里',py:'jiā lǐ',vi:'ở nhà'},
+      {zh:'呢',py:'ne',vi:'trợ từ xác nhận'},
+    ],
+    dialog:[
+      {spk:'A',name:'王一雪',zh:'喂，你在哪儿呢？',py:'Wèi, nǐ zài nǎr ne?',vi:'A lô, bạn đang ở đâu vậy?'},
+      {spk:'B',name:'刘明',zh:'我在家里呢。',py:'Wǒ zài jiā lǐ ne.',vi:'Tôi đang ở nhà.'},
+      {spk:'A',name:'王一雪',zh:'你几点去医院上班？',py:'Nǐ jǐ diǎn qù yīyuàn shàngbān?',vi:'Bạn mấy giờ đi bệnh viện làm việc?'},
+      {spk:'B',name:'刘明',zh:'我八点去医院上班。',py:'Wǒ bā diǎn qù yīyuàn shàngbān.',vi:'Tôi 8 giờ đi bệnh viện làm việc.'},
+    ],
+    questions:[
+      {q:'刘明在哪里？',choices:['在公司','在医院','在家里','在学校'],ans:2},
+      {q:'刘明几点去医院？',choices:['七点','七点半','八点','八点半'],ans:2},
+      {q:'"我在家里呢"中"呢"表示什么？',choices:['建议','询问','确认正在发生的事实','感叹'],ans:2},
+    ]
+  },
+  {
+    id:5, title:'Rủ đi xem phim – từ chối', scene:'🎬 Sân trường',
+    vocab:[
+      {zh:'电影院',py:'diànyǐngyuàn',vi:'rạp chiếu phim'},
+      {zh:'看电影',py:'kàn diànyǐng',vi:'xem phim'},
+      {zh:'还有事',py:'hái yǒu shì',vi:'vẫn còn bận'},
+    ],
+    dialog:[
+      {spk:'A',name:'李文',zh:'下午我想去电影院看电影，你去吗？',py:'Xiàwǔ wǒ xiǎng qù diànyǐngyuàn kàn diànyǐng, nǐ qù ma?',vi:'Chiều tôi muốn đi rạp xem phim, bạn đi không?'},
+      {spk:'B',name:'白家月',zh:'我不想去，下午还有事。',py:'Wǒ bù xiǎng qù, xiàwǔ hái yǒu shì.',vi:'Tôi không muốn đi, buổi chiều vẫn còn bận.'},
+      {spk:'A',name:'李文',zh:'好的。明天呢？',py:'Hǎo de. Míngtiān ne?',vi:'Được rồi. Ngày mai thì sao?'},
+      {spk:'B',name:'白家月',zh:'明天下午两点还上课呢，四点半下课。',py:'Míngtiān xiàwǔ liǎng diǎn hái shàngkè ne, sì diǎn bàn xiàkè.',vi:'Ngày mai chiều 2 giờ vẫn còn có lớp, 4 giờ rưỡi tan học.'},
+    ],
+    questions:[
+      {q:'李文下午想做什么？',choices:['去超市','去电影院看电影','去学校上课','去医院'],ans:1},
+      {q:'白家月为什么不能去？',choices:['不喜欢电影','要上班','下午还有事','在家里'],ans:2},
+      {q:'白家月明天几点下课？',choices:['两点','三点','四点','四点半'],ans:3},
+    ]
+  },
+  {
+    id:6, title:'Lịch buổi sáng', scene:'☀️ Nhà – buổi sáng sớm',
+    vocab:[
+      {zh:'早上',py:'zǎoshang',vi:'buổi sáng sớm'},
+      {zh:'起床',py:'qǐchuáng',vi:'thức dậy'},
+      {zh:'分',py:'fēn',vi:'phút'},
+    ],
+    dialog:[
+      {spk:'A',name:'妈妈',zh:'你早上几点起床？',py:'Nǐ zǎoshang jǐ diǎn qǐchuáng?',vi:'Buổi sáng con mấy giờ thức dậy?'},
+      {spk:'B',name:'安妮',zh:'我早上七点起床。',py:'Wǒ zǎoshang qī diǎn qǐchuáng.',vi:'Con thức dậy 7 giờ sáng.'},
+      {spk:'A',name:'妈妈',zh:'你上午有课吗？',py:'Nǐ shàngwǔ yǒu kè ma?',vi:'Buổi sáng con có lớp không?'},
+      {spk:'B',name:'安妮',zh:'有，上午十点十分有课。',py:'Yǒu, shàngwǔ shí diǎn shí fēn yǒu kè.',vi:'Có, sáng 10 giờ 10 phút có lớp.'},
+    ],
+    questions:[
+      {q:'安妮几点起床？',choices:['六点','六点半','七点','七点半'],ans:2},
+      {q:'安妮上午几点有课？',choices:['九点','九点半','十点','十点十分'],ans:3},
+      {q:'"十点十分"用数字怎么写？',choices:['10:01','10:10','10:15','10:50'],ans:1},
+    ]
+  },
+  {
+    id:7, title:'Nhờ đi mua rau', scene:'🏪 Gọi điện từ nhà',
+    vocab:[
+      {zh:'店里',py:'diàn lǐ',vi:'trong cửa hàng'},
+      {zh:'买菜',py:'mǎi cài',vi:'mua rau củ'},
+      {zh:'分钟后',py:'fēnzhōng hòu',vi:'sau X phút'},
+    ],
+    dialog:[
+      {spk:'A',name:'王一雪',zh:'你去店里买些菜吧。',py:'Nǐ qù diàn lǐ mǎi xiē cài ba.',vi:'Bạn đến cửa hàng mua ít rau đi nhé.'},
+      {spk:'B',name:'刘明',zh:'好，我十分钟后去。',py:'Hǎo, wǒ shí fēnzhōng hòu qù.',vi:'Được, 10 phút nữa tôi đi.'},
+      {spk:'A',name:'王一雪',zh:'谢谢！店里几点关门？',py:'Xièxie! Diàn lǐ jǐ diǎn guānmén?',vi:'Cảm ơn! Cửa hàng đóng cửa mấy giờ?'},
+      {spk:'B',name:'刘明',zh:'晚上八点关门。',py:'Wǎnshang bā diǎn guānmén.',vi:'Tối 8 giờ đóng cửa.'},
+    ],
+    questions:[
+      {q:'王一雪让刘明做什么？',choices:['去医院','去电影院','去店里买菜','去学校'],ans:2},
+      {q:'刘明什么时候去？',choices:['现在','五分钟后','十分钟后','二十分钟后'],ans:2},
+      {q:'店里几点关门？',choices:['下午六点','晚上七点','晚上八点','晚上九点'],ans:2},
+    ]
+  },
+  {
+    id:8, title:'Lịch học cả ngày', scene:'📚 Ký túc xá',
+    vocab:[
+      {zh:'节课',py:'jié kè',vi:'tiết học'},
+      {zh:'中午',py:'zhōngwǔ',vi:'buổi trưa'},
+      {zh:'继续',py:'jìxù',vi:'tiếp tục'},
+    ],
+    dialog:[
+      {spk:'A',name:'李文',zh:'你今天有几节课？',py:'Nǐ jīntiān yǒu jǐ jié kè?',vi:'Hôm nay bạn có mấy tiết học?'},
+      {spk:'B',name:'安妮',zh:'今天有两节课。上午十点上课，下午两点还有课呢。',py:'Jīntiān yǒu liǎng jié kè. Shàngwǔ shí diǎn shàngkè, xiàwǔ liǎng diǎn hái yǒu kè ne.',vi:'Hôm nay có 2 tiết. Sáng 10 giờ lên lớp, chiều 2 giờ còn có lớp nữa.'},
+      {spk:'A',name:'李文',zh:'你几点下课？',py:'Nǐ jǐ diǎn xiàkè?',vi:'Bạn mấy giờ tan học?'},
+      {spk:'B',name:'安妮',zh:'下午四点半下课。',py:'Xiàwǔ sì diǎn bàn xiàkè.',vi:'Chiều 4 giờ rưỡi tan học.'},
+    ],
+    questions:[
+      {q:'安妮今天有几节课？',choices:['一节','两节','三节','四节'],ans:1},
+      {q:'下午几点有课？',choices:['一点','两点','三点','四点'],ans:1},
+      {q:'安妮几点下课？',choices:['三点半','四点','四点半','五点'],ans:2},
+    ]
+  },
+  {
+    id:9, title:'Kế hoạch buổi tối', scene:'🌙 Tan làm – buổi tối',
+    vocab:[
+      {zh:'吃晚饭',py:'chī wǎnfàn',vi:'ăn tối'},
+      {zh:'有时候',py:'yǒu shíhou',vi:'đôi khi'},
+      {zh:'回家',py:'huí jiā',vi:'về nhà'},
+    ],
+    dialog:[
+      {spk:'A',name:'同事',zh:'你今天晚上有事吗？',py:'Nǐ jīntiān wǎnshang yǒu shì ma?',vi:'Tối nay bạn có bận không?'},
+      {spk:'B',name:'王一雪',zh:'我晚上六点半下班，七点回家吃晚饭。',py:'Wǒ wǎnshang liù diǎn bàn xiàbān, qī diǎn huí jiā chī wǎnfàn.',vi:'Tôi tối 6:30 tan ca, 7 giờ về nhà ăn tối.'},
+      {spk:'A',name:'同事',zh:'八点我们去看电影吧。',py:'Bā diǎn wǒmen qù kàn diànyǐng ba.',vi:'8 giờ chúng ta đi xem phim nhé.'},
+      {spk:'B',name:'王一雪',zh:'好的，八点见！',py:'Hǎo de, bā diǎn jiàn!',vi:'Được, 8 giờ gặp nhau!'},
+    ],
+    questions:[
+      {q:'王一雪几点下班？',choices:['六点','六点半','七点','七点半'],ans:1},
+      {q:'她几点回家吃晚饭？',choices:['六点','六点半','七点','八点'],ans:2},
+      {q:'他们几点去看电影？',choices:['七点','七点半','八点','九点'],ans:2},
+    ]
+  },
+  {
+    id:10, title:'Thay đổi lịch hẹn', scene:'🔄 Nhắn tin đổi lịch',
+    vocab:[
+      {zh:'对不起',py:'duìbuqǐ',vi:'xin lỗi'},
+      {zh:'换',py:'huàn',vi:'đổi'},
+      {zh:'方便',py:'fāngbiàn',vi:'thuận tiện'},
+    ],
+    dialog:[
+      {spk:'A',name:'李文',zh:'对不起，我下午两点有事，我们换个时间吧。',py:'Duìbuqǐ, wǒ xiàwǔ liǎng diǎn yǒu shì, wǒmen huàn gè shíjiān ba.',vi:'Xin lỗi, chiều 2 giờ tôi bận, chúng ta đổi giờ khác nhé.'},
+      {spk:'B',name:'安妮',zh:'好的，那几点？',py:'Hǎo de, nà jǐ diǎn?',vi:'Được, vậy mấy giờ?'},
+      {spk:'A',name:'李文',zh:'下午四点可以吗？',py:'Xiàwǔ sì diǎn kěyǐ ma?',vi:'Chiều 4 giờ được không?'},
+      {spk:'B',name:'安妮',zh:'可以，四点见吧！',py:'Kěyǐ, sì diǎn jiàn ba!',vi:'Được, 4 giờ gặp nhau nhé!'},
+    ],
+    questions:[
+      {q:'李文为什么要换时间？',choices:['他不想见面','下午两点有事','下午没有空','他要上课'],ans:1},
+      {q:'他们最后约几点见面？',choices:['两点','三点','四点','四点半'],ans:2},
+      {q:'"四点见吧"中"吧"的作用是什么？',choices:['表示疑问','表示建议/确认','表示感叹','表示惊讶'],ans:1},
+    ]
+  },
+];
+
+/* ═══════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════ */
+let sName = '', sClass = '';
+let curId = 1;
+let listened = new Set();       // lessons user has played at least once
+let playCount = {};             // {id: n}
+let scores = {};                // {id: {correct, total, answers:[]}}
+let playSpeed = 1.0;
+let synth = window.speechSynthesis;
+let isSpeaking = false;
+
+/* ═══════════════════════════════════════════════════════
+   BOOT
+═══════════════════════════════════════════════════════ */
+function boot() {
+  sName  = document.getElementById('sName').value.trim();
+  sClass = document.getElementById('sClass').value.trim();
+  if (!sName)  { alert('Vui lòng nhập họ tên!'); return; }
+  document.getElementById('regSection').style.display = 'none';
+  document.getElementById('mainEl').style.display = 'block';
+  const classDisplay = sClass || '<em style="color:var(--ink-muted)">chưa điền</em>';
+  document.getElementById('infoBar').innerHTML =
+    `Học viên: <strong>${sName}</strong> &nbsp;·&nbsp; Lớp: <strong>${classDisplay}</strong> &nbsp;·&nbsp; <strong>Bài 7 – 我晚上六点半下班</strong>`;
+  buildDots();
+  renderLesson(1);
+}
+
+/* ═══════════════════════════════════════════════════════
+   DOTS NAV
+═══════════════════════════════════════════════════════ */
+function buildDots() {
+  const row = document.getElementById('dotsRow');
+  row.innerHTML = `<span class="ld-label">Bài</span>` +
+    LESSONS.map(l =>
+      `<button class="dot${l.id===1?' active':''}" id="dot-${l.id}" onclick="renderLesson(${l.id})">${l.id}</button>`
+    ).join('');
+}
+
+function refreshDot(id) {
+  const dot = document.getElementById('dot-' + id);
+  dot.classList.remove('done','partial','wrong','active');
+  const sc = scores[id];
+  if (!sc) { dot.classList.add(id===curId?'active':''); return; }
+  const answered = sc.answers.filter(Boolean).length;
+  if (answered < sc.total) { dot.classList.add('partial'); }
+  else if (sc.correct === sc.total) { dot.classList.add('done'); }
+  else { dot.classList.add('wrong'); }
+  if (id === curId) dot.classList.add('active');
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDER LESSON
+═══════════════════════════════════════════════════════ */
+function renderLesson(id) {
+  stopSpeech();
+  curId = id;
+  // refresh all dots
+  document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+  document.getElementById('dot-' + id).classList.add('active');
+
+  const L = LESSONS.find(l => l.id === id);
+  if (!playCount[id]) playCount[id] = 0;
+  const hasListened = listened.has(id);
+  const sc = scores[id];
+
+  /* — vocab chips — */
+  const vocabHtml = L.vocab.map(v => `
+    <div class="vocab-chip">
+      <span class="vc-zh">${v.zh}</span>
+      <span class="vc-py">${v.py}</span>
+      <span class="vc-vi">${v.vi}</span>
+    </div>`).join('');
+
+  /* — waveform bars — */
+  const bars = Array.from({length:18}, (_,i) => {
+    const h = 8 + Math.random()*22;
+    const d = (.35 + Math.random()*.4).toFixed(2);
+    return `<div class="wv-bar" id="wvb-${id}-${i}" style="--d:${d}s;--h:${h}px;height:6px"></div>`;
+  }).join('');
+
+  /* — dialogue lines — */
+  const dlHtml = L.dialog.map((d,i) => `
+    <div class="dline" id="dline-${id}-${i}">
+      <span class="spk-tag spk-${d.spk}">${d.name}</span>
+      <div class="dline-content">
+        <div class="dline-zh">${d.zh}</div>
+        <div class="dline-py">${d.py}</div>
+        <div class="dline-vi">${d.vi}</div>
+      </div>
+    </div>`).join('');
+
+  /* — questions — */
+  const qsHtml = L.questions.map((q, qi) => {
+    const prev = sc && sc.answers[qi];
+    const locked = !hasListened && !prev;
+    const stateClass = prev ? (prev.correct ? 'state-ok' : 'state-bad') : '';
+    const choicesHtml = q.choices.map((c,ci) => {
+      let cls = '';
+      if (prev) {
+        if (ci === q.ans) cls = 'opt-ok';
+        else if (ci === prev.chosen && !prev.correct) cls = 'opt-bad';
+      }
+      return `<button class="q-opt${cls?' '+cls:''}"
+        id="opt-${id}-${qi}-${ci}"
+        onclick="checkQ(${id},${qi},${ci})"
+        ${prev?'disabled':''}>${String.fromCharCode(65+ci)}. ${c}</button>`;
+    }).join('');
+
+    let fbHtml = '';
+    if (prev) {
+      fbHtml = prev.correct
+        ? `<div class="q-feedback fb-ok">✅ Chính xác!</div>`
+        : `<div class="q-feedback fb-bad">❌ Sai — Đáp án đúng: ${String.fromCharCode(65+q.ans)}. ${q.choices[q.ans]}</div>`;
+    }
+
+    return `
+      <div class="q-block${locked?' locked':''}${stateClass?' '+stateClass:''}" id="qb-${id}-${qi}">
+        <div class="q-num-text">Câu ${qi+1} / ${L.questions.length}</div>
+        <div class="q-stem">${q.q}</div>
+        <div class="q-choices">${choicesHtml}</div>
+        ${fbHtml}
+        <button class="btn-explain${prev?' show':''}" id="xbtn-${id}-${qi}"
+          onclick="aiExplain(${id},${qi})">✨ Giải thích bằng AI</button>
+        <div class="ai-explain-box" id="xbox-${id}-${qi}"></div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('cardArea').innerHTML = `
+    <div class="lesson-card">
+      <div class="lcard-band">
+        <span class="lcard-num">Bài ${id}</span>
+        <span class="lcard-title">${L.title}</span>
+        <span class="lcard-scene">${L.scene}</span>
+      </div>
+      <div class="lcard-body">
+
+        <!-- Vocab -->
+        <div class="vocab-row">${vocabHtml}</div>
+
+        <!-- Player -->
+        <div class="player">
+          <div class="player-title">🎧 Audio Player – Nhấn ▶ để nghe hội thoại</div>
+          <div class="player-line-preview" id="plp-${id}">— chưa phát —</div>
+          <div class="waveform">${bars}</div>
+          <div class="player-controls">
+            <div class="spd-group">
+              <button class="btn-spd${playSpeed===0.7?' on':''}" onclick="setSpeed(0.7)">0.7×</button>
+              <button class="btn-spd${playSpeed===1.0?' on':''}" onclick="setSpeed(1.0)">1×</button>
+              <button class="btn-spd${playSpeed===1.3?' on':''}" onclick="setSpeed(1.3)">1.3×</button>
+            </div>
+            <button class="btn-play" id="playBtn-${id}" onclick="playLesson(${id})">▶</button>
+          </div>
+          <div class="listen-count" id="lcnt-${id}">
+            🎧 Đã nghe: ${playCount[id]} lần
+          </div>
+        </div>
+
+        <!-- Dialogue toggle -->
+        <div class="dialogue">
+          <button class="dialogue-toggle" id="dtog-${id}" onclick="toggleDialogue(${id})">
+            📄 Xem script hội thoại (pinyin + dịch nghĩa)
+            <span class="arr">▼</span>
+          </button>
+          <div class="dialogue-lines" id="dlines-${id}">${dlHtml}</div>
+        </div>
+
+        <!-- Questions -->
+        <div class="qs-header">
+          <span class="qs-label">🎯 Câu hỏi kiểm tra (${L.questions.length} câu)</span>
+        </div>
+        ${!hasListened && !sc
+          ? `<div class="qs-lock-notice">🔒 Hãy nghe hội thoại ít nhất 1 lần để mở khoá câu hỏi</div>`
+          : ''}
+        ${qsHtml}
+
+      </div>
+    </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════
+   PLAYER – TTS line by line with highlight
+═══════════════════════════════════════════════════════ */
+function playLesson(id) {
+  const L = LESSONS.find(l => l.id === id);
+  const btn = document.getElementById('playBtn-' + id);
+
+  if (isSpeaking) {
+    stopSpeech();
+    btn.textContent = '▶'; btn.classList.remove('playing');
+    return;
+  }
+
+  // open dialogue so highlights are visible
+  openDialogue(id);
+
+  btn.textContent = '⏹'; btn.classList.add('playing');
+  isSpeaking = true;
+  waveAnim(id, true);
+
+  let idx = 0;
+  function next() {
+    if (idx >= L.dialog.length) {
+      // done
+      btn.textContent = '▶'; btn.classList.remove('playing');
+      isSpeaking = false;
+      waveAnim(id, false);
+      clearHighlight(id);
+      document.getElementById('plp-' + id).textContent = '✅ Đã phát xong';
+      document.getElementById('plp-' + id).classList.remove('lit');
+      listened.add(id);
+      playCount[id]++;
+      document.getElementById('lcnt-' + id).textContent = `🎧 Đã nghe: ${playCount[id]} lần`;
+      unlockQs(id);
+      return;
+    }
+    const d = L.dialog[idx];
+    // highlight
+    clearHighlight(id);
+    const lineEl = document.getElementById(`dline-${id}-${idx}`);
+    if (lineEl) lineEl.classList.add('highlight');
+    const preview = document.getElementById('plp-' + id);
+    preview.textContent = `${d.name}：${d.zh}`;
+    preview.classList.add('lit');
+
+    const u = new SpeechSynthesisUtterance(d.zh);
+    u.lang = 'zh-CN';
+    u.rate = playSpeed;
+    u.pitch = d.spk === 'B' ? 1.15 : 0.88;
+    u.onend = () => { idx++; setTimeout(next, 700); };
+    u.onerror = () => { idx++; next(); };
+    synth.speak(u);
+  }
+  next();
+}
+
+function stopSpeech() {
+  synth.cancel();
+  isSpeaking = false;
+  document.querySelectorAll('.btn-play').forEach(b => { b.textContent='▶'; b.classList.remove('playing'); });
+  document.querySelectorAll('.wv-bar').forEach(b => b.classList.remove('live'));
+}
+
+function waveAnim(id, on) {
+  document.querySelectorAll(`[id^="wvb-${id}-"]`).forEach(b => {
+    if (on) b.classList.add('live'); else b.classList.remove('live');
+  });
+}
+
+function clearHighlight(id) {
+  document.querySelectorAll(`[id^="dline-${id}-"]`).forEach(el => el.classList.remove('highlight'));
+}
+
+function setSpeed(s) {
+  playSpeed = s;
+  document.querySelectorAll('.btn-spd').forEach(b => {
+    b.classList.toggle('on', parseFloat(b.textContent) === s);
+  });
+}
+
+function openDialogue(id) {
+  const tog = document.getElementById('dtog-' + id);
+  const lines = document.getElementById('dlines-' + id);
+  if (!lines.classList.contains('open')) {
+    lines.classList.add('open');
+    tog.classList.add('open');
+  }
+}
+
+function toggleDialogue(id) {
+  const tog = document.getElementById('dtog-' + id);
+  const lines = document.getElementById('dlines-' + id);
+  lines.classList.toggle('open');
+  tog.classList.toggle('open');
+}
+
+/* ═══════════════════════════════════════════════════════
+   QUESTIONS
+═══════════════════════════════════════════════════════ */
+function unlockQs(id) {
+  const L = LESSONS.find(l => l.id === id);
+  L.questions.forEach((_, qi) => {
+    const blk = document.getElementById(`qb-${id}-${qi}`);
+    if (blk) blk.classList.remove('locked');
+  });
+  const notice = document.querySelector('.qs-lock-notice');
+  if (notice) notice.remove();
+}
+
+function checkQ(lid, qi, ci) {
+  const L = LESSONS.find(l => l.id === lid);
+  const q = L.questions[qi];
+  const blk = document.getElementById(`qb-${lid}-${qi}`);
+  if (!blk || blk.querySelector('.opt-ok')) return; // already answered
+
+  // disable all opts
+  blk.querySelectorAll('.q-opt').forEach(b => b.disabled = true);
+
+  const correct = ci === q.ans;
+  document.getElementById(`opt-${lid}-${qi}-${q.ans}`).classList.add('opt-ok');
+  if (!correct) document.getElementById(`opt-${lid}-${qi}-${ci}`).classList.add('opt-bad');
+
+  // feedback
+  const fb = document.createElement('div');
+  fb.className = correct ? 'q-feedback fb-ok' : 'q-feedback fb-bad';
+  fb.textContent = correct
+    ? '✅ Chính xác!'
+    : `❌ Sai — Đáp án đúng: ${String.fromCharCode(65+q.ans)}. ${q.choices[q.ans]}`;
+  blk.appendChild(fb);
+
+  // show explain button
+  const xbtn = document.getElementById(`xbtn-${lid}-${qi}`);
+  if (xbtn) xbtn.classList.add('show');
+
+  // block state colour
+  blk.classList.add(correct ? 'state-ok' : 'state-bad');
+
+  // record
+  if (!scores[lid]) scores[lid] = { correct:0, total:L.questions.length, answers:[] };
+  scores[lid].answers[qi] = { chosen:ci, correct };
+  if (correct) scores[lid].correct++;
+
+  refreshDot(lid);
+  updateProgress();
+
+  // check lesson done
+  const ans = scores[lid].answers.filter(Boolean).length;
+  if (ans === L.questions.length) checkAllDone();
+}
+
+/* ═══════════════════════════════════════════════════════
+   AI EXPLAIN  (Claude API)
+═══════════════════════════════════════════════════════ */
+async function aiExplain(lid, qi) {
+  const L = LESSONS.find(l => l.id === lid);
+  const q = L.questions[qi];
+  const sc = scores[lid] && scores[lid].answers[qi];
+  const xbox = document.getElementById(`xbox-${lid}-${qi}`);
+  const xbtn = document.getElementById(`xbtn-${lid}-${qi}`);
+  if (!xbox) return;
+
+  if (xbox.classList.contains('show')) {
+    xbox.classList.remove('show'); xbtn.textContent = '✨ Giải thích bằng AI';
+    return;
+  }
+
+  xbox.classList.add('show');
+  xbtn.textContent = '⏳ Đang hỏi AI...';
+  xbox.innerHTML = `<span class="ai-thinking">AI đang suy nghĩ…</span>`;
+
+  const dialogText = L.dialog.map(d => `${d.name}: ${d.zh} (${d.vi})`).join('\n');
+  const wasCorrect = sc && sc.correct;
+  const chosen = sc ? q.choices[sc.chosen] : '(chưa trả lời)';
+
+  const prompt = `Bạn là giáo viên tiếng Trung dạy người Việt Nam học HSK1.
+
+Hội thoại bài học:
+${dialogText}
+
+Câu hỏi: ${q.q}
+Các đáp án: ${q.choices.map((c,i)=>String.fromCharCode(65+i)+'. '+c).join(' | ')}
+Đáp án đúng: ${String.fromCharCode(65+q.ans)}. ${q.choices[q.ans]}
+Học viên chọn: ${chosen} — ${wasCorrect ? 'ĐÚNG ✅' : 'SAI ❌'}
+
+Hãy viết giải thích ngắn gọn (~3-4 câu) bằng tiếng Việt:
+1. Tại sao đáp án đó đúng (dẫn câu từ hội thoại)
+2. Nếu học viên sai, giải thích điểm nhầm lẫn
+3. Ghi nhớ nhanh (mẹo nhỏ)`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        messages: [{ role:'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.find(b => b.type==='text')?.text || 'Không lấy được giải thích.';
+    xbox.textContent = text;
+    xbtn.textContent = '✨ Ẩn giải thích AI';
+  } catch(e) {
+    xbox.textContent = 'Không kết nối được AI. Kiểm tra kết nối mạng và thử lại.';
+    xbtn.textContent = '✨ Giải thích bằng AI';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   PROGRESS
+═══════════════════════════════════════════════════════ */
+function updateProgress() {
+  const done = Object.values(scores).filter(s => s.answers.filter(Boolean).length === s.total).length;
+  const correct = Object.values(scores).reduce((a,s) => a + s.correct, 0);
+  document.getElementById('progFill').style.width = (done/10*100) + '%';
+  document.getElementById('progLabel').textContent = `Hoàn thành: ${done} / 10 bài`;
+  document.getElementById('scoreLabel').textContent = `Điểm: ${correct} / 30`;
+}
+
+function checkAllDone() {
+  const allDone = LESSONS.every(l =>
+    scores[l.id] && scores[l.id].answers.filter(Boolean).length === l.questions.length
+  );
+  if (allDone) setTimeout(showResult, 800);
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESULT
+═══════════════════════════════════════════════════════ */
+function showResult() {
+  const correct = Object.values(scores).reduce((a,s) => a + s.correct, 0);
+  const pct = Math.round(correct / 30 * 100);
+  const emoji = pct>=90?'🌟':pct>=70?'🎉':pct>=50?'👍':'💪';
+  const msg = pct>=90?'Xuất sắc! Kỹ năng nghe HSK1 của bạn rất tốt!'
+            : pct>=70?'Khá tốt! Luyện thêm các bài chưa đúng nhé.'
+            : pct>=50?'Trung bình. Hãy nghe lại và thử lại từng bài.'
+            : 'Cần cố gắng thêm. Nghe kỹ hội thoại trước khi trả lời.';
+
+  const grid = LESSONS.map(l => {
+    const s = scores[l.id];
+    const c = s ? s.correct : 0;
+    const t = l.questions.length;
+    const col = c===t?'var(--ok)':c===0?'var(--bad)':'var(--gold)';
+    return `<div class="rg-cell">
+      <div class="rg-n" style="color:${col}">${c}/${t}</div>
+      <div class="rg-l">Bài ${l.id}</div>
+    </div>`;
+  }).join('');
+
+  // per-lesson breakdown for submit receipt
+  const lessonBreakdown = LESSONS.map(l => {
+    const s = scores[l.id];
+    const c = s ? s.correct : 0;
+    return `${l.id}.${l.title}: ${c}/${l.questions.length}`;
+  }).join(' | ');
+
+  const now = new Date();
+  const timeStr = now.toLocaleString('vi-VN');
+
+  const rc = document.getElementById('resultEl');
+  rc.innerHTML = `
+    <div class="result-emoji">${emoji}</div>
+    <div class="result-heading">恭喜！Hoàn thành 10 bài nghe!</div>
+    <div class="result-score">${pct}<span style="font-size:36px;font-weight:400">đ</span></div>
+    <div class="result-sub">${correct}/30 câu đúng &nbsp;·&nbsp; ${msg}</div>
+    <div class="result-grid">${grid}</div>
+    <div class="result-note">🎧 ${sName} &nbsp;·&nbsp; ${sClass} &nbsp;·&nbsp; HSK1 Bài 7 · Kỹ Năng Nghe</div>
+    <button class="btn-retry" onclick="retryAll()">🔄 Làm lại từ đầu</button>
+
+    <!-- SUBMIT PANEL -->
+    <div class="submit-panel" id="submitPanel">
+      <h3>📤 Nộp bài cho giáo viên</h3>
+      <p>Kiểm tra lại kết quả bên dưới rồi nhấn <strong>Nộp bài</strong>. Sau khi nộp, bài làm sẽ được ghi lại và bạn không thể sửa.</p>
+      <div class="submit-summary">
+        <div class="ss-row"><span>👤 Học sinh</span><span>${sName}</span></div>
+        <div class="ss-row"><span>🏫 Lớp</span><span>${sClass || '(chưa điền)'}</span></div>
+        <div class="ss-row"><span>📚 Bài học</span><span>HSK1 – Bài 7 · Kỹ Năng Nghe</span></div>
+        <div class="ss-row"><span>🕐 Thời gian</span><span>${timeStr}</span></div>
+        <div class="ss-row"><span>✅ Số câu đúng</span><span>${correct} / 30</span></div>
+        <div class="ss-row"><span>🎯 Điểm số</span><span class="ss-score">${pct} / 100</span></div>
+        <div class="ss-row"><span>🏆 Xếp loại</span><span>${pct>=90?'Xuất sắc':pct>=70?'Khá':pct>=50?'Trung bình':'Cần cố gắng'}</span></div>
+      </div>
+      <button class="btn-submit" id="btnSubmit" onclick="submitResult(${correct}, ${pct}, '${timeStr}', '${lessonBreakdown.replace(/'/g,"\\'")}')">
+        📤 Nộp bài ngay
+      </button>
+    </div>
+  `;
+  rc.classList.add('show');
+  rc.scrollIntoView({ behavior:'smooth' });
+}
+
+function retryAll() {
+  scores = {}; listened = new Set(); playCount = {};
+  stopSpeech();
+  buildDots();
+  renderLesson(1);
+  document.getElementById('resultEl').classList.remove('show');
+  document.getElementById('resultEl').innerHTML = '';
+  document.getElementById('submittedCard').classList.remove('show');
+  document.getElementById('submittedCard').innerHTML = '';
+  updateProgress();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+/* ═══════════════════════════════════════════════════════
+   SUBMIT
+═══════════════════════════════════════════════════════ */
+function submitResult(correct, pct, timeStr, lessonBreakdown) {
+  const btn = document.getElementById('btnSubmit');
+  if (!btn) return;
+
+  // Disable button & show loading
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Đang nộp bài...';
+
+  // Use Claude API to generate personalised feedback
+  const prompt = `Bạn là giáo viên tiếng Trung HSK1 thân thiện.
+Học sinh: ${sName}, Lớp: ${sClass || 'chưa điền'}.
+Kết quả bài nghe HSK1 Bài 7 (我晚上六点半下班):
+- Điểm: ${pct}/100 (${correct}/30 câu đúng)
+- Chi tiết từng bài: ${lessonBreakdown}
+
+Viết nhận xét ngắn gọn bằng tiếng Việt (4-5 câu):
+1. Lời khen hoặc động viên phù hợp với điểm số
+2. Nhận xét cụ thể về kỹ năng nghe bài này (chủ đề: thời gian, giờ giấc, trợ từ 吧/呢)
+3. 1-2 gợi ý cải thiện cụ thể
+Viết tự nhiên như giáo viên nhắn tin cho học sinh.`;
+
+  fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 300,
+      messages: [{ role:'user', content: prompt }]
+    })
+  })
+  .then(r => r.json())
+  .then(data => {
+    const feedback = data.content?.find(b => b.type==='text')?.text || 'Bài làm đã được ghi nhận. Tiếp tục cố gắng nhé!';
+    showSubmittedCard(correct, pct, timeStr, feedback);
+  })
+  .catch(() => {
+    showSubmittedCard(correct, pct, timeStr, 'Bài làm đã được ghi nhận thành công! Giáo viên sẽ xem xét và phản hồi sau.');
+  });
+}
+
+function showSubmittedCard(correct, pct, timeStr, feedback) {
+  // Hide submit panel
+  const sp = document.getElementById('submitPanel');
+  if (sp) sp.style.display = 'none';
+
+  const rank = pct>=90?'🥇 Xuất sắc':pct>=70?'🥈 Khá':pct>=50?'🥉 Trung bình':'💪 Cần cố gắng';
+  const lessonDetails = LESSONS.map(l => {
+    const s = scores[l.id];
+    const c = s ? s.correct : 0;
+    const t = l.questions.length;
+    const ok = c === t;
+    return `<div class="sr-row">
+      <span>Bài ${l.id} – ${l.title}</span>
+      <span style="color:${ok?'var(--ok)':c===0?'var(--bad)':'var(--gold)'}">${c}/${t}</span>
+    </div>`;
+  }).join('');
+
+  const sc = document.getElementById('submittedCard');
+  sc.innerHTML = `
+    <div class="submitted-big">✅</div>
+    <div class="submitted-title">Nộp bài thành công!</div>
+    <div class="submitted-sub">Bài làm của bạn đã được ghi nhận. Giáo viên sẽ xem xét kết quả.</div>
+    <div class="submitted-receipt">
+      <div class="sr-row"><span>👤 Học sinh</span><span>${sName}</span></div>
+      <div class="sr-row"><span>🏫 Lớp</span><span>${sClass || '(chưa điền)'}</span></div>
+      <div class="sr-row"><span>📚 Bài học</span><span>HSK1 – Bài 7 · Kỹ Năng Nghe</span></div>
+      <div class="sr-row"><span>🕐 Thời gian nộp</span><span>${timeStr}</span></div>
+      <div class="sr-row"><span>✅ Số câu đúng</span><span>${correct} / 30</span></div>
+      <div class="sr-row"><span>🎯 Điểm số</span><span class="sr-highlight">${pct} / 100</span></div>
+      <div class="sr-row"><span>🏆 Xếp loại</span><span>${rank}</span></div>
+    </div>
+    <details style="text-align:left;margin-bottom:14px">
+      <summary style="font-size:13px;font-weight:600;cursor:pointer;color:var(--ink-soft);margin-bottom:8px">Chi tiết từng bài ▼</summary>
+      <div class="submitted-receipt" style="margin-top:8px">${lessonDetails}</div>
+    </details>
+    <div style="background:#fff;border:1.5px solid #b7ebc0;border-radius:var(--r-sm);padding:14px 16px;text-align:left;margin-bottom:14px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--ok);text-transform:uppercase;margin-bottom:8px">✨ Nhận xét từ AI giáo viên</div>
+      <div style="font-size:14px;line-height:1.75;color:var(--ink-soft)">${feedback}</div>
+    </div>
+    <div class="submitted-time">📅 Nộp lúc ${timeStr}</div>
+    <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button onclick="window.print()" style="padding:10px 20px;border:1.5px solid var(--ok);background:white;color:var(--ok);border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">🖨 In kết quả</button>
+      <button onclick="retryAll()" style="padding:10px 20px;border:none;background:var(--navy);color:white;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">🔄 Làm lại</button>
+    </div>
+  `;
+  sc.classList.add('show');
+  sc.scrollIntoView({ behavior:'smooth' });
+}
+</script>
+</body>
+</html>
